@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bhojanshaastra-frontend/static/css/main.a52c76ad.css",
+    "main.js": "/bhojanshaastra-frontend/static/js/main.7132bc4a.js",
+    "static/js/453.b908f2c4.chunk.js": "/bhojanshaastra-frontend/static/js/453.b908f2c4.chunk.js",
+    "index.html": "/bhojanshaastra-frontend/index.html",
+    "main.a52c76ad.css.map": "/bhojanshaastra-frontend/static/css/main.a52c76ad.css.map",
+    "main.7132bc4a.js.map": "/bhojanshaastra-frontend/static/js/main.7132bc4a.js.map",
+    "453.b908f2c4.chunk.js.map": "/bhojanshaastra-frontend/static/js/453.b908f2c4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a52c76ad.css",
+    "static/js/main.7132bc4a.js"
+  ]
+}
