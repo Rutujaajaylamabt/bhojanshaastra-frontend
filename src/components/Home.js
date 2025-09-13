@@ -1,102 +1,126 @@
 import React from "react";
-import Hero from "./Hero";
-import Features from "./Features";
-import RitualSeason from "./RitualSeason";
-import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Home = () => {
-  const featuresData = [
-    { icon: "🧘", title: "Mind-Body Balance", desc: "Meals crafted to align with your Prakriti and lifestyle." },
-    { icon: "🕉️", title: "Ritual Friendly", desc: "Supports fasting days, Navratri, and other Hindu rituals." },
-    { icon: "📅", title: "Seasonal Meals", desc: "Meals that match the current season for optimal health." },
-    { icon: "🍛", title: "Personalized Plans", desc: "Satvik, Rasayana, or digestive-light meals tailored for you." },
-  ];
-
-  const testimonialsData = [
-    { text: "BhojanShaastra transformed my daily meals! I feel more energetic and healthy.", author: "Priya R." },
-    { text: "The quiz helped me discover my body type and adjust my diet accordingly. Amazing app!", author: "Rohan S." },
-    { text: "I love how it aligns meals with seasons and rituals. Very thoughtful and practical.", author: "Anjali K." },
-  ];
-
+const Hero = () => {
   return (
-    <>
-      {/* Hero Section */}
-      <Hero />
+    <div
+      className="hero-container text-center d-flex flex-column justify-content-center align-items-center"
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(-45deg, #FFB74D, #FF8A65, #FF7043, #F57C00)",
+        backgroundSize: "400% 400%",
+        animation: "gradientShift 8s ease infinite",
+        color: "#fff",
+        padding: "50px 20px",
+        position: "relative",
+        textShadow: "1px 1px 8px rgba(0,0,0,0.3)",
+        overflow: "hidden",
+      }}
+    >
+      {/* Title */}
+      <h1
+        className="display-3 fw-bold mb-3"
+        style={{
+          animation: "fadeIn 1.2s ease-in-out",
+          letterSpacing: "2px",
+          textTransform: "uppercase",
+        }}
+      >
+        🌿 BhojanShaastra
+      </h1>
 
-      {/* Features Section */}
-      <Features />
+      {/* Subtitle */}
+      <p
+        className="lead mb-4"
+        style={{
+          fontSize: "1.5rem",
+          animation: "fadeIn 2s ease-in-out",
+          maxWidth: "700px",
+          lineHeight: "1.6",
+        }}
+      >
+        Your <span style={{ fontWeight: "bold", color: "#FFD54F" }}>AI Meal Planner</span> inspired by Ayurveda & Indian Rituals ✨
+      </p>
 
-      {/* Quick Benefits Section */}
-      <section className="py-5" style={{ backgroundColor: "#E8F5E9" }}>
-        <Container>
-          <h2 className="text-center mb-5" style={{ color: "#2E7D32", fontWeight: "700" }}>
-            Why Choose BhojanShaastra?
-          </h2>
-          <Row className="justify-content-center g-4">
-            {featuresData.map((feature, idx) => (
-              <Col key={idx} xs={12} sm={6} md={3}>
-                <div
-                  className="card shadow-sm p-4 text-center h-100 feature-card"
-                  style={{
-                    borderRadius: "15px",
-                    transition: "transform 0.3s, box-shadow 0.3s",
-                    cursor: "pointer",
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = "translateY(-8px)";
-                    e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.2)";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 5px 15px rgba(0,0,0,0.15)";
-                  }}
-                >
-                  <h1 className="mb-3" style={{ fontSize: "3rem" }}>{feature.icon}</h1>
-                  <h5 className="fw-bold mb-2">{feature.title}</h5>
-                  <p className="text-muted">{feature.desc}</p>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
+      {/* Start Quiz Button */}
+      <Link to="/quiz">
+        <button
+          className="btn btn-lg fw-bold"
+          style={{
+            background: "linear-gradient(90deg, #fff, #f1f8e9)",
+            color: "#2E7D32",
+            padding: "14px 40px",
+            borderRadius: "50px",
+            boxShadow: "0 6px 18px rgba(0,0,0,0.3)",
+            transition: "all 0.4s ease",
+            fontSize: "1.2rem",
+          }}
+          onMouseOver={(e) => {
+            e.target.style.transform = "scale(1.1)";
+            e.target.style.boxShadow = "0 10px 25px rgba(0,0,0,0.5)";
+            e.target.style.background =
+              "linear-gradient(90deg, #C8E6C9, #A5D6A7)";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.transform = "scale(1)";
+            e.target.style.boxShadow = "0 6px 18px rgba(0,0,0,0.3)";
+            e.target.style.background = "linear-gradient(90deg, #fff, #f1f8e9)";
+          }}
+        >
+          🚀 Start Quiz
+        </button>
+      </Link>
 
-      {/* Ritual & Seasonal Section */}
-      <RitualSeason />
+      {/* Scroll Down Hint */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "25px",
+          fontSize: "2rem",
+          animation: "bounce 2s infinite",
+          color: "#fff",
+        }}
+      >
+        ↓
+      </div>
 
-      {/* Testimonials Section */}
-      <section className="py-5" style={{ backgroundColor: "#C8E6C9" }}>
-        <Container>
-          <h2 className="text-center mb-5" style={{ color: "#2E7D32", fontWeight: "700" }}>What Users Say</h2>
-          <Row className="justify-content-center g-4">
-            {testimonialsData.map((testimonial, idx) => (
-              <Col key={idx} xs={12} sm={6} md={4}>
-                <div
-                  className="card shadow-sm p-4 h-100 testimonial-card"
-                  style={{
-                    borderRadius: "15px",
-                    backgroundColor: "#fff",
-                    transition: "transform 0.3s, box-shadow 0.3s",
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = "translateY(-5px)";
-                    e.currentTarget.style.boxShadow = "0 12px 25px rgba(0,0,0,0.15)";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
-                  }}
-                >
-                  <p className="mb-3" style={{ fontStyle: "italic", color: "#555" }}>{testimonial.text}</p>
-                  <footer className="text-muted fw-bold">- {testimonial.author}</footer>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-    </>
+      {/* Decorative Wave Overlay */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          height: "140px",
+          background:
+            "url('https://www.transparenttextures.com/patterns/diagonal-waves.png') repeat-x",
+          opacity: 0.15,
+          pointerEvents: "none",
+        }}
+      ></div>
+
+      {/* Keyframes */}
+      <style>
+        {`
+          @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-12px); }
+            60% { transform: translateY(-6px); }
+          }
+
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        `}
+      </style>
+    </div>
   );
 };
 
-export default Home;
+export default Hero;
