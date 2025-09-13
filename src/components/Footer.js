@@ -18,11 +18,12 @@ const Footer = () => {
 
         {/* Social Media Icons */}
         <div style={{ marginBottom: "15px" }}>
-          <a href="#" style={iconStyle}><FaFacebookF /></a>
-          <a href="#" style={iconStyle}><FaInstagram /></a>
-          <a href="#" style={iconStyle}><FaTwitter /></a>
-          <a href="#" style={iconStyle}><FaLinkedinIn /></a>
-        </div>
+  <button onClick={() => {}} style={iconStyle}><FaFacebookF /></button>
+  <button onClick={() => {}} style={iconStyle}><FaInstagram /></button>
+  <button onClick={() => {}} style={iconStyle}><FaTwitter /></button>
+  <button onClick={() => {}} style={iconStyle}><FaLinkedinIn /></button>
+</div>
+
 
         {/* Footer Note */}
         <p style={{ fontSize: "0.85rem", color: "#C8E6C9", fontWeight: "400" }}>
