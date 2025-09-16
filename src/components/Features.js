@@ -29,21 +29,25 @@ const Features = () => {
               style={{
                 borderRadius: "25px",
                 cursor: "pointer",
-                background: "linear-gradient(135deg, #E8F5E9, #C8E6C9)", // light green background
-                transition: "all 0.5s ease",
-                overflow: "hidden"
+                background: "linear-gradient(135deg, #E8F5E9, #C8E6C9)",
+                transition: "all 0.4s ease",
+                overflow: "hidden",
+                willChange: "transform"
               }}
             >
               <Card.Body className="d-flex flex-column align-items-center">
                 {/* Icon Circle with floating + glow effect */}
-                <div className="feature-icon mb-3 d-flex align-items-center justify-content-center">
+                <div
+                  className="feature-icon mb-3 d-flex align-items-center justify-content-center"
+                  aria-label={feature.title}
+                >
                   {feature.icon}
                 </div>
 
                 <Card.Title className="fw-bold" style={{ color: "#2E7D32", fontSize: "1.3rem" }}>
                   {feature.title}
                 </Card.Title>
-                <Card.Text className="text-secondary" style={{ fontSize: "0.95rem" }}>
+                <Card.Text className="text-muted" style={{ fontSize: "0.95rem" }}>
                   {feature.desc}
                 </Card.Text>
               </Card.Body>
@@ -54,25 +58,26 @@ const Features = () => {
 
       <style>
         {`
-          /* Floating Icon Animation + Dark Green Glow */
+          /* Floating Icon Animation + Glow */
           .feature-icon {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #2E7D32, #4CAF50); /* dark green gradient */
+            background: linear-gradient(135deg, #2E7D32, #66BB6A);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
             color: #fff;
             animation: float 3s ease-in-out infinite;
-            box-shadow: 0 4px 20px rgba(46, 125, 50, 0.4);
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.35);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+            will-change: transform;
           }
 
           .feature-icon:hover {
             transform: scale(1.25) rotate(10deg);
-            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6);
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.5);
           }
 
           /* Feature Card Hover */
@@ -87,23 +92,23 @@ const Features = () => {
             50% { transform: translateY(-10px); }
           }
 
-          /* Background leaves */
+          /* Background with soft gradient overlay */
           .feature-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/leaf.png') repeat;
-            opacity: 0.05;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+              linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)),
+              url('https://www.transparenttextures.com/patterns/leaf.png') repeat;
+            opacity: 0.08;
             pointer-events: none;
-            animation: moveLeaves 20s linear infinite;
+            animation: moveLeaves 25s linear infinite;
             z-index: 0;
           }
 
           @keyframes moveLeaves {
             0% { background-position: 0 0; }
-            100% { background-position: 500px 0; }
+            100% { background-position: 600px 0; }
           }
 
           .feature-card {
@@ -117,7 +122,7 @@ const Features = () => {
 
           @media (max-width: 576px) {
             .feature-card { margin-bottom: 20px; }
-            .feature-icon { width: 60px; height: 60px; font-size: 2rem; }
+            .feature-icon { width: 65px; height: 65px; font-size: 2rem; }
           }
         `}
       </style>

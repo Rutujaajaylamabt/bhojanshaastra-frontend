@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import Features from "./components/Features";
-import RitualSeason from "./components/RitualSeason";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
-import QuizPreview from "./components/QuizPreview";
 import Footer from "./components/Footer";
+
+// ✅ Protected Route wrapper
+const ProtectedRoute = ({ isLoggedIn, children }) => {
+  return isLoggedIn ? children : <Navigate to="/login" replace />;
+};
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Handle login logic
+  // ✅ Load login state from localStorage
+  useEffect(() => {
+    const savedLogin = localStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(savedLogin);
+  }, []);
+
+  // ✅ Save login state in localStorage
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn);
+  }, [isLoggedIn]);
+
   const handleLogin = (email, password) => {
+    // Dummy credentials (replace with backend in real app)
     if (email === "user@example.com" && password === "123456") {
       setIsLoggedIn(true);
       alert("✅ Login successful!");
@@ -22,7 +35,6 @@ function App() {
     }
   };
 
-  // Handle logout logic
   const handleLogout = () => {
     setIsLoggedIn(false);
     alert("✅ Logged out!");
@@ -30,27 +42,30 @@ function App() {
 
   return (
     <Router>
-      {/* Navbar with login/logout state */}
       <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
 
-      {/* Main Routes */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/rituals" element={<RitualSeason />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+      <main style={{ minHeight: "80vh" }}>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
 
-        {/* Protected Quiz Route */}
-        <Route
-          path="/quiz"
-          element={
-            isLoggedIn ? <QuizPreview /> : <Navigate to="/login" replace />
-          }
-        />
-      </Routes>
+          {/* Protected route */}
+          <Route
+            path="/quiz"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Home /> {/* 👈 You might later replace this with a Quiz component */}
+              </ProtectedRoute>
+            }
+          />
 
-      {/* Footer visible on all pages */}
+          {/* Catch-all route → redirect to Home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+
       <Footer />
     </Router>
   );
